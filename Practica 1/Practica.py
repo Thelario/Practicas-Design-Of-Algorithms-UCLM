@@ -1,6 +1,6 @@
 
 # DISEÑO Y ANÁLISIS DE ALGORITMOS
-# PRÁCTICA 1
+# Práctica 1: Medida empírica de la eficiencia de algoritmos
 # Autor: Pablo Lario Gómez
 
 import time
@@ -36,6 +36,8 @@ randomBurbujaList = []
 randomSeleccionList = []
 randomInsercionList = []
 
+mostrarDatosEnConsola = False # Poner en true si se quieren mostrar paso a paso los datos de los algoritmos en consola
+
 for i in range(100, 2100, 100):
 
     myList = []
@@ -65,7 +67,10 @@ for i in range(100, 2100, 100):
     t = time.time()
     sorting.Burbuja(directoBurbuja, length)
     t = time.time() - t
-    print("(" + str(i) + ") " + "Directo Burbuja: " + str(t))
+
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Directo Burbuja: " + str(t))
+    
     directoBurbujaList.append(t)
 
     # Directo Selección
@@ -73,7 +78,10 @@ for i in range(100, 2100, 100):
     t = time.time()
     sorting.Seleccion(directoSeleccion, length)
     t = time.time() - t
-    print("(" + str(i) + ") " + "Directo Selección: " + str(t))
+
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Directo Selección: " + str(t))
+    
     directoSeleccionList.append(t)
 
     # Directo Inserción
@@ -81,10 +89,14 @@ for i in range(100, 2100, 100):
     t = time.time()
     sorting.Insercion(directoInsercion, length)
     t = time.time() - t
-    print("(" + str(i) + ") " + "Directo Inserción: " + str(t))
+    
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Directo Inserción: " + str(t))
+    
     directoInsercionList.append(t)
 
-    print("")
+    if mostrarDatosEnConsola:
+        print("")
 
         # INVERSO
 
@@ -93,7 +105,10 @@ for i in range(100, 2100, 100):
     t = time.time()
     sorting.Burbuja(inversoBurbuja, length)
     t = time.time() - t
-    print("(" + str(i) + ") " + "Inverso Burbuja: " + str(t))
+    
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Inverso Burbuja: " + str(t))
+    
     inversoBurbujaList.append(t)
 
     # Inverso Selección
@@ -101,7 +116,10 @@ for i in range(100, 2100, 100):
     t = time.time()
     sorting.Seleccion(inversoSeleccion, length)
     t = time.time() - t
-    print("(" + str(i) + ") " + "Inverso Selección: " + str(t))
+    
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Inverso Selección: " + str(t))
+    
     inversoSeleccionList.append(t)
 
     # Directo Inserción
@@ -109,10 +127,14 @@ for i in range(100, 2100, 100):
     t = time.time()
     sorting.Insercion(inversoInsercion, length)
     t = time.time() - t
-    print("(" + str(i) + ") " + "Inverso Inserción: " + str(t))
+    
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Inverso Inserción: " + str(t))
+    
     inversoInsercionList.append(t)
 
-    print("")
+    if mostrarDatosEnConsola:
+        print("")
 
         # RANDOM 
 
@@ -127,7 +149,9 @@ for i in range(100, 2100, 100):
 
     x = x / 10
 
-    print("(" + str(i) + ") " + "Random Burbuja: " + str(x))
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Random Burbuja: " + str(x))
+    
     randomBurbujaList.append(x)
 
     # Random Selección
@@ -141,7 +165,9 @@ for i in range(100, 2100, 100):
 
     x = x / 10
 
-    print("(" + str(i) + ") " + "Random Seleccion: " + str(x))
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Random Seleccion: " + str(x))
+    
     randomSeleccionList.append(x)
 
     # Directo Inserción
@@ -155,10 +181,13 @@ for i in range(100, 2100, 100):
 
     x = x / 10
 
-    print("(" + str(i) + ") " + "Random Insercion: " + str(x))
+    if mostrarDatosEnConsola:
+        print("(" + str(i) + ") " + "Random Insercion: " + str(x))
+    
     randomInsercionList.append(x)
 
-    print("")
+    if mostrarDatosEnConsola:
+        print("")
 
 
 # El código siguiente se utiliza para pasar a filas y columnas de excel todos los datos obtenidos en el bucle anterior
