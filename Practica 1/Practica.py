@@ -1,3 +1,8 @@
+
+# DISEÑO Y ANÁLISIS DE ALGORITMOS
+# PRÁCTICA 1
+# Autor: Pablo Lario Gómez
+
 import time
 import sorting
 import random
@@ -14,7 +19,9 @@ import xlsxwriter
 # Para exp. directo en inverso hacer una muestra. Para exp. aleatorion tomar 10 muestras y hacer la media (para evitar influencias anómalas).
 # El array a ordenar debe ser el mismo para cada algoritmo en cada experimento.
 
-workbook = xlsxwriter.Workbook('practica_1.xlsx')
+# xlsxwriter es una librería que exporta datos a un archivo excel.
+# La voy a utilizar en esta práctica para exportar todos los resultados obtenidos en el análisis y crear las gráficas en excel.
+workbook = xlsxwriter.Workbook('practica_1_pablo_lario_gomez.xlsx')
 worksheet = workbook.add_worksheet()
 
 directoBurbujaList = []
@@ -40,12 +47,15 @@ for i in range(100, 2100, 100):
 
     length = len(myList)
 
+    # Cogemos la lista y la ordenamos para obtener la lista directa
     directList = myList.copy()
     sorting.Burbuja(directList, length)
 
+    # Cogemos la lista directa y la invertimos para obtener la lista inversa
     inverseList = directList.copy()
     inverseList.reverse()
 
+    # Lista con valores aleatorios
     randomList = myList.copy()
 
         # DIRECTO
@@ -149,6 +159,9 @@ for i in range(100, 2100, 100):
     randomInsercionList.append(x)
 
     print("")
+
+
+# El código siguiente se utiliza para pasar a filas y columnas de excel todos los datos obtenidos en el bucle anterior
 
 row = 0
 column = 0
