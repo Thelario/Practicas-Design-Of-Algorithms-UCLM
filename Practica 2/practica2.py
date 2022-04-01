@@ -1,6 +1,6 @@
 import math
 
-# Esta función se tiene que implementar porque la función pow de ser en el lenguaje puede tener errores de redondeo.
+# Esta función se tiene que implementar porque la función pow de serie en el lenguaje puede tener errores de redondeo.
 def ExpMod(a, n, z):
     usePythonPowMethod = False
     if (usePythonPowMethod):
