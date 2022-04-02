@@ -1,5 +1,7 @@
 import math
 
+from sklearn.decomposition import KernelPCA
+
 # Esta función se tiene que implementar porque la función pow de serie en el lenguaje puede tener errores de redondeo.
 def ExpMod(a, n, z):
     usePythonPowMethod = False
@@ -99,35 +101,57 @@ class Diffie_Hellman:
 
     def BruteForceAttack(self, z1, z2):
 
-        for i in range(0, 999999999999):
-            if (int(ExpMod(self.n, i, self.p)) == z1):
-                print("x: " + str(i))
-                z = ExpMod(z2, i, self.p)
-                print("Secrete Key: " + str(z))
-                return i
-            if(int(ExpMod(self.n, i, self.p)) == z2):
-                print("y: " + str(i))
-                z = ExpMod(z1, i, self.p)
-                print("Secrete Key: " + str(z))
-                return i
+        keepGoing = True
+        checkZ1 = True
+        checkZ2 = True
+
+        for i in range(0, self.p):
+
+            if (checkZ1):
+                if (int(ExpMod(self.n, i, self.p)) == z1):
+                    print("x: " + str(i))
+                    checkZ1 = False
+                    if (keepGoing == False):
+                        z = ExpMod(z2, i, self.p)
+                        print("Secrete Key: " + str(z))
+                        return i
+                    else:
+                        keepGoing = False
+
+            if (checkZ2):
+                if(int(ExpMod(self.n, i, self.p)) == z2):
+                    print("y: " + str(i))
+                    checkZ2 = False
+                    if (keepGoing == False):
+                        z = ExpMod(z1, i, self.p)
+                        print("Secrete Key: " + str(z))
+                        return i
+                    else:
+                        keepGoing = False
         
         print("No key found")
         return -1
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-dh = Diffie_Hellman(313213323123, 52313)
+
+p = 99239213
+n = 36285883
+z1 = 21263052
+z2 = 87654321
+
+dh = Diffie_Hellman(p, n)
 
 print("")
-dh.BruteForceAttack(73034832664, 999999999999999)
+dh.BruteForceAttack(z1, z2)
 print("")
 
 onlyTestAttack = True
 
 if (onlyTestAttack == False):
 
-    alice = Alice(dh, 20236125)
-    bob = Bob(dh, 2930957)
+    alice = Alice(dh, z1)
+    bob = Bob(dh, z2)
 
     alice.SetBob(bob)
     bob.SetAlice(alice)
